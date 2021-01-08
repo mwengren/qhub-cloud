@@ -142,6 +142,8 @@ module "qhub" {
 
 {% if cookiecutter.prefect == "true" -%}
 module "prefect" {
+  source = "github.com/quansight/qhub-terraform-modules//modules/kubernetes/services/prefect"
+
   dependencies = [
     module.qhub.depended_on
   ]
@@ -149,4 +151,5 @@ module "prefect" {
   jupyterhub_api_token = module.qhub.jupyterhub_api_token
   prefect_token = var.prefect_token
 }
+  
 {% endif -%}
